@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Stream with buttons</title>
+  <script >
+
+    const url = 'http://localhost:5000/button';
+
+    function button(arg) {
+
+	const data = {
+	    button: arg
+	};
+
+	console.log(data);
+	
+	fetch(url, {
+	    method: 'POST',
+	    headers: {
+		'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify(data)
+	    
+	})
+	    .then(response => response.json())
+	    .then(data => {
+		console.log('Response:', data);
+	    })
+	    .catch(error => {
+		console.error('Error:', error);
+	    });
+}
+
+  </script>
+</head>
+<body>
+  <h1>Live Feed</h1>
+  
+    <div>
+        <img src="{{ url_for('video') }}" width="50%"/>
+    </div>
+
+
+    <button onclick="button('1')"> Button 1 </button>
+    <button onclick="button('2')"> Button 2 </button>
+    <button onclick="button('3')"> Button 3 </button>
+
+
+</body>
+</html>
